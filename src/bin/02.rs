@@ -2,10 +2,8 @@ advent_of_code::solution!(2);
 
 fn validate_play_step(play_step: &str, max_red: u32, max_green: u32, max_blue: u32) -> bool {
     let parts = play_step.split(", ").collect::<Vec<&str>>();
-    // dbg!(&parts);
     parts.iter().all(|part| {
         let part = part.split(' ').collect::<Vec<&str>>();
-        // dbg!(&part);
         let value = part[0].parse::<u32>().unwrap();
         match part[1] {
             "red" => value <= max_red,
@@ -19,13 +17,11 @@ fn process_part_one(input: &str, max_red: u32, max_green: u32, max_blue: u32) ->
     input
         .lines()
         .flat_map(|line| {
-            // println!("{}: ", line);
             let parts = line.split(':').collect::<Vec<&str>>();
             let game = parts[0].split("Game ").collect::<Vec<&str>>()[1]
                 .parse::<u32>()
                 .unwrap();
             let play_steps = parts[1].trim().split("; ").collect::<Vec<&str>>();
-            // dbg!(game, &play_steps);
             Some(
                 if play_steps
                     .iter()

@@ -3,27 +3,22 @@ advent_of_code::solution!(1);
 fn extract_calibration_value(input: &str) -> u32 {
     input
         .lines()
-        .map(|line| {
-            // print!("{}: ", line);
+        .flat_map(|line| {
             let mut calibration: u32 = 10;
             for c in line.chars() {
-                if c.is_digit(10) {
-                    // print!("{} + ", c);
+                if c.is_ascii_digit() {
                     calibration *= c.to_digit(10).unwrap();
                     break;
                 }
             }
             for c in line.chars().rev() {
-                if c.is_digit(10) {
-                    // print!("{}", c);
+                if c.is_ascii_digit() {
                     calibration += c.to_digit(10).unwrap();
                     break;
                 }
             }
-            // println!(" = {}", calibration);
             Some(calibration)
         })
-        .flatten()
         .sum()
 }
 
@@ -52,12 +47,10 @@ fn replace_numbers_in_line(line: &str) -> String {
 fn extract_calibration_value_two(input: &str) -> u32 {
     input
         .lines()
-        .map(|line| {
-            // print!("{}: ", line);
+        .flat_map(|line| {
             let line = replace_numbers_in_line(line);
             Some(extract_calibration_value(line.as_str()))
         })
-        .flatten()
         .sum()
 }
 
