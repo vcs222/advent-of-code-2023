@@ -109,7 +109,7 @@ fn process_part_two(input: &str) -> usize {
                 if is_part_num {
                     let part_num = num_str.parse::<i32>().unwrap();
                     star_location.iter().for_each(|&x| {
-                        let gear_loc = gear_location.entry(x).or_insert(Vec::new());
+                        let gear_loc = gear_location.entry(x).or_default();
                         gear_loc.push(part_num);
                     });
                     // println!("{} | {:?} | {:?}", num_str, star_location, gear_location);
@@ -123,7 +123,7 @@ fn process_part_two(input: &str) -> usize {
         if is_part_num {
             let part_num = num_str.parse::<i32>().unwrap();
             star_location.iter().for_each(|&x| {
-                let gear_loc = gear_location.entry(x).or_insert(Vec::new());
+                let gear_loc = gear_location.entry(x).or_default();
                 gear_loc.push(part_num);
             });
             // println!("{} | {:?} | {:?}", num_str, star_location, gear_location);
